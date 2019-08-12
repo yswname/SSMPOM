@@ -7,6 +7,9 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.InputStream;
 
+/**
+ * 测试
+ */
 public class TestMybatis {
     public static void main(String[] args) throws Exception {
         InputStream input = TestMybatis.class.getClassLoader().getResourceAsStream("mybatis.xml");
