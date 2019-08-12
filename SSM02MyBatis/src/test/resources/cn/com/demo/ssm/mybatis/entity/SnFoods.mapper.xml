@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namesapce:理解成实现类的全路径(包名+类名) -->
+<mapper namespace="cn.com.demo.ssm.mybatis.dao.ISnFoodsDAO">
+    <resultMap id="SnFoods" type="cn.com.demo.ssm.mybatis.entity.SnFoods">
+        <id column="fd_id" property="fdId"></id>
+        <result column="fd_name" property="fdName"></result>
+        <result column="fd_price" property="fdPrice"></result>
+        <result column="fd_taste" property="fdTaste"></result>
+        <result column="fd_package" property="fdPackage"></result>
+        <result column="fd_inventory" property="fdInventory"></result>
+        <result column="fd_detail" property="fdDetail"></result>
+    </resultMap>
+    <select id="findById" parameterType="int" resultMap="SnFoods">
+        select * from snacks_foods where fd_id=#{fdIdxxxx}
+    </select>
+    <insert id="save" parameterType="cn.com.demo.ssm.mybatis.entity.SnFoods">
+        insert into snacks_foods (fd_name,fd_price,fd_taste,fd_package,fd_inventory,fd_detail) values(#{fdName},#{fdPrice},#{fdTaste},#{fdPackage},#{fdInventory},#{fdDetail})
+    </insert>
+    <update id="update" parameterType="cn.com.demo.ssm.mybatis.entity.SnFoods">
+        update snacks_foods set fd_price=#{fdPrice} where fd_id=#{fdId}
+    </update>
+    <delete id="delete" parameterType="int">
+        delete from snacks_foods where fd_id=#{fdIdxxxx}
+    </delete>
+</mapper>
