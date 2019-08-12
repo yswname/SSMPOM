@@ -1,0 +1,8 @@
+# Created by .ignore support plugin (hsz.mobi)
+/.idea
+/out
+/target
+/SSMPOM.iml
+/SSM01JavaWeb/SSM01JavaWeb.iml
+/SSM01JavaWeb/target
+/SSM02MyBatis/target
