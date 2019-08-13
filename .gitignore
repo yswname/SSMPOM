@@ -6,3 +6,7 @@
 /SSM01JavaWeb/SSM01JavaWeb.iml
 /SSM01JavaWeb/target
 /SSM02MyBatis/target
+SSM01JavaWeb/src/main/resources/
+SSM01JavaWeb/src/test/
+SSM02MyBatis/src/main/resources/
+/.idea/vcs.xml

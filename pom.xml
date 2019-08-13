@@ -11,6 +11,7 @@
     <modules>
         <module>SSM01JavaWeb</module>
         <module>SSM02MyBatis</module>
+        <module>SSM03MyBatis</module>
     </modules>
 
     <name>SSMPOM</name>
