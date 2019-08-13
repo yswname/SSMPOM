@@ -73,8 +73,8 @@ public class MyBatisUtils {
         return session;
     }
 
-    public static void close(SqlSession session) {
-        session = threadLocal.get();
+    public static void close() {
+        SqlSession session = threadLocal.get();
         if (session != null) {
             threadLocal.set(null);
             session.close();
