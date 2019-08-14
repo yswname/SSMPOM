@@ -39,7 +39,6 @@
             <groupId>cn.com.demo.ssm</groupId>
             <artifactId>SSM03MyBatis</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 
