@@ -23,12 +23,12 @@ public class TestUserDAOImpl {
             // 1 获取要更新的对象
             UserEntity userEntity = this.userDAO.findByUserName("zhangsan");
             // 2 修改该对象需要更新的属性值
-            userEntity.setUrAge(30);
+            userEntity.setUrAge(20);
             // 3 持久化对象
             this.userDAO.update(userEntity);
             // 4 断言更新成功
             userEntity = this.userDAO.findByUserName("zhangsan");
-            Assert.assertEquals(30, userEntity.getUrAge());
+            Assert.assertEquals(20, userEntity.getUrAge());
 
             // 统一rollback commit close
         } catch (Exception e) {

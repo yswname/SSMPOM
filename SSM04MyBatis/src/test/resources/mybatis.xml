@@ -6,6 +6,8 @@
     <settings>
         <!--ur_user_name   urUserName   urUserName-->
         <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <!--使用log4j输入日志-->
+        <setting name="logImpl" value="LOG4J"/>
     </settings>
     <typeAliases>
         <!--        <typeAlias type="cn.com.demo.ssm.entity.UserEntity" alias="UserEntity"></typeAlias>-->

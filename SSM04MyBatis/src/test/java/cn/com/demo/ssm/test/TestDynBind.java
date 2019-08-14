@@ -12,6 +12,7 @@ public class TestDynBind {
         // 2 被绑定的接口的方法，需要同mapper里面的sql id一一对应
         SqlSession session = MyBatisUtils.getSqlSession();
         // 实现动态绑定（内存中创建了一个类，实现了接口的方法同sql的id绑定）
+        //sesssion.xxxx("id",param)
         IUserDAO userDAO = session.getMapper(IUserDAO.class);
         // save 用户
         UserEntity userEntity = new UserEntity();
