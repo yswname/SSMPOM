@@ -19,8 +19,8 @@ public class TestUserDAOImpl {
     public void testSave() throws Exception {
         UserEntity userEntity = new UserEntity();
         userEntity.setUrAge(18);
-        userEntity.setUrName("王五");
-        userEntity.setUrUserName("wangwu");
+        userEntity.setUrName("王五1");
+        userEntity.setUrUserName("wangwu1");
 
         this.userDAO.save(userEntity);
     }
