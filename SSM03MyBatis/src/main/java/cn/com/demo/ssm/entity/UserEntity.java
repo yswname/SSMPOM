@@ -6,6 +6,16 @@ public class UserEntity {
     private String urUserName;
     private int urAge;
 
+    private ICardEntity card;
+
+    public ICardEntity getCard() {
+        return card;
+    }
+
+    public void setCard(ICardEntity card) {
+        this.card = card;
+    }
+
     public int getUrId() {
         return urId;
     }
