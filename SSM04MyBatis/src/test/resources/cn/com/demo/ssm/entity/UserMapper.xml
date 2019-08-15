@@ -13,6 +13,9 @@
             <result column="ic_code" property="icCode"></result>
             <result column="ic_address" property="icAddress"></result>
         </association>
+        <collection property="orderList" ofType="OrderEntity" column="ur_id"
+                    select="cn.com.demo.ssm.dao.IOrderDAO.findOrdersByUrId">
+        </collection>
     </resultMap>
 
     <resultMap id="UserEntityMap2" type="UserEntity">
@@ -32,7 +35,7 @@
     </delete>
 
     <select id="findById" parameterType="int" resultMap="UserEntityMap">
-        select ur.*,ic.* from dm_user ur left outer join dm_icard ic on ur.ur_id=ic.ic_id where ur.ur_id=#{id}
+        select ur.*,ic.* from dm_user ur left outer join dm_icard ic on ur.ur_id=ic.ic_id  where ur.ur_id=#{id}
     </select>
 
     <select id="findByUserName" parameterType="string" resultMap="UserEntityMap2">

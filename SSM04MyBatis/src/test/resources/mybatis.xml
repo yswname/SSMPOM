@@ -33,5 +33,6 @@
     <mappers>
         <mapper resource="cn/com/demo/ssm/entity/UserMapper.xml"></mapper>
         <mapper resource="cn/com/demo/ssm/entity/ICardMapper.xml"></mapper>
+        <mapper resource="cn/com/demo/ssm/entity/OrderMapper.xml"></mapper>
     </mappers>
 </configuration>

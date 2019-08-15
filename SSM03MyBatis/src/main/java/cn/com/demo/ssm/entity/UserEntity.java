@@ -1,12 +1,25 @@
 package cn.com.demo.ssm.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class UserEntity {
     private int urId;
     private String urName;
     private String urUserName;
     private int urAge;
 
+    private List<OrderEntity> orderList = new ArrayList<>();
+
     private ICardEntity card;
+
+    public List<OrderEntity> getOrderList() {
+        return orderList;
+    }
+
+    public void setOrderList(List<OrderEntity> orderList) {
+        this.orderList = orderList;
+    }
 
     public ICardEntity getCard() {
         return card;
