@@ -15,7 +15,7 @@
     <select id="findAll" resultType="RoleEntity">
         select * from dm_role order by rl_id
     </select>
-    <select id="findRolesByUrId" parameterType="int" resultType="RoleEntity">
+    <select id="findRolesByUrId" parameterType="int" resultMap="RoleEntityMap">
          select rl.* from dm_role rl, dm_rl_ur_map mp where mp.mp_ur_id=#{id} and mp.mp_rl_id=rl.rl_id
     </select>
 </mapper>
