@@ -3,6 +3,14 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.com.demo.ssm.dao.ICardDAO">
+    <resultMap id="ICardEntityMap" type="ICardEntity">
+        <id column="ic_id" property="icId"/>
+        <result column="ic_code" property="icCode"/>
+        <result column="ic_address" property="icAddress"/>
+
+        <association property="user" javaType="UserEntity" column="ic_id"
+                     select="cn.com.demo.ssm.dao.IUserDAO.findById"></association>
+    </resultMap>
     <insert id="save" parameterType="ICardEntity">
         insert into dm_icard (ic_id,ic_code,ic_address) values(#{icId},#{icCode},#{icAddress})
     </insert>

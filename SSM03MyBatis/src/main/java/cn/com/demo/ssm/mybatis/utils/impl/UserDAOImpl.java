@@ -9,6 +9,11 @@ import java.util.List;
 
 public class UserDAOImpl implements IUserDAO {
     @Override
+    public List<UserEntity> findUsersByRlId(int rlId) {
+        return null;
+    }
+
+    @Override
     public void save(UserEntity userEntity) {
         SqlSession session = MyBatisUtils.getSqlSession();
         try {

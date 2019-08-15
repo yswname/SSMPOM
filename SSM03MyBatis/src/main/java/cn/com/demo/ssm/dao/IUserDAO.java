@@ -16,4 +16,6 @@ public interface IUserDAO {
     public UserEntity findByUserName(String urUserName);
 
     public List<UserEntity> findAll();
+
+    public List<UserEntity> findUsersByRlId(int rlId);
 }

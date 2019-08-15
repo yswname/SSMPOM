@@ -8,14 +8,13 @@
         <result property="urUserName" column="ur_user_name"></result>
         <result property="urName" column="ur_name"></result>
         <result property="urAge" column="ur_age"></result>
-        <association property="card" javaType="ICardEntity">
-            <id column="ic_id" property="icId"></id>
-            <result column="ic_code" property="icCode"></result>
-            <result column="ic_address" property="icAddress"></result>
-        </association>
+        <association property="card" javaType="ICardEntity" column="ur_id"
+                     select="cn.com.demo.ssm.dao.ICardDAO.findById" fetchType="lazy"></association>
         <collection property="orderList" ofType="OrderEntity" column="ur_id"
-                    select="cn.com.demo.ssm.dao.IOrderDAO.findOrdersByUrId">
+                    select="cn.com.demo.ssm.dao.IOrderDAO.findOrdersByUrId" fetchType="lazy">
         </collection>
+        <collection property="roleList" ofType="RoleEntity" column="ur_id"
+                    select="cn.com.demo.ssm.dao.IRoleDAO.findRolesByUrId" fetchType="lazy"></collection>
     </resultMap>
 
     <resultMap id="UserEntityMap2" type="UserEntity">
@@ -35,7 +34,7 @@
     </delete>
 
     <select id="findById" parameterType="int" resultMap="UserEntityMap">
-        select ur.*,ic.* from dm_user ur left outer join dm_icard ic on ur.ur_id=ic.ic_id  where ur.ur_id=#{id}
+        select * from dm_user where ur_id=#{urId}
     </select>
 
     <select id="findByUserName" parameterType="string" resultMap="UserEntityMap2">
@@ -44,5 +43,9 @@
 
     <select id="findAll" resultType="UserEntity">
         select * from dm_user order by ur_id
+    </select>
+
+    <select id="findUsersByRlId" parameterType="int" resultMap="UserEntityMap">
+        select ur.* from dm_user ur, dm_rl_ur_map mp where mp.mp_rl_id=#{rlId} and mp.mp_ur_id=ur.ur_id
     </select>
 </mapper>

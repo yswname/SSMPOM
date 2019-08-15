@@ -17,12 +17,13 @@ public class TestSearchOrder {
                 // 获取订单中关联得用户
                 UserEntity userEntity = order.getUser();
                 if (userEntity != null) {
-                    System.out.println("     " + userEntity.getUrName());
+                    System.out.println("     " + userEntity.getUrName() + "," + userEntity.getCard().getIcCode());
                     // 检查关联出来得用户里面，是否有关联对应得订单
                     List<OrderEntity> orderListSub = userEntity.getOrderList();
                     for (OrderEntity order2 : orderListSub) {
                         System.out.println("             " + order2.getOdId() + "," + order2.getOdName());
                     }
+
                 }
             }
         }

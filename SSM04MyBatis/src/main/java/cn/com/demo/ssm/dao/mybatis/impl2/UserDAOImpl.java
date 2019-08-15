@@ -10,6 +10,11 @@ public class UserDAOImpl implements IUserDAO {
     private IUserDAO userDAO = MyBatisUtils.getSqlSession().getMapper(IUserDAO.class);
 
     @Override
+    public List<UserEntity> findUsersByRlId(int rlId) {
+        return null;
+    }
+
+    @Override
     public void save(UserEntity userEntity) {
         try {
             this.userDAO.save(userEntity);

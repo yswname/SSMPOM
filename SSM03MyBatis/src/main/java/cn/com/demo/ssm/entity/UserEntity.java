@@ -11,7 +11,17 @@ public class UserEntity {
 
     private List<OrderEntity> orderList = new ArrayList<>();
 
+    private List<RoleEntity> roleList = new ArrayList<>();
+
     private ICardEntity card;
+
+    public List<RoleEntity> getRoleList() {
+        return roleList;
+    }
+
+    public void setRoleList(List<RoleEntity> roleList) {
+        this.roleList = roleList;
+    }
 
     public List<OrderEntity> getOrderList() {
         return orderList;

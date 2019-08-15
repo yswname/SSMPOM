@@ -10,7 +10,7 @@ import java.util.List;
 public class TestSearchUser {
     public static void main(String[] args) {
         IUserDAO userDAO = MyBatisUtils.getSqlSession().getMapper(IUserDAO.class);
-        UserEntity userEntity = userDAO.findById(17);
+        UserEntity userEntity = userDAO.findById(1);
         System.out.println(userEntity.getUrName());
         System.out.println(userEntity.getCard().getIcAddress());
         List<OrderEntity> orderList = userEntity.getOrderList();
@@ -19,6 +19,7 @@ public class TestSearchUser {
                 System.out.println(order.getOdName() + "," + order.getOdId());
             }
         }
+        System.out.println(userEntity.getCard().getIcCode());
 
 //        userEntity = userDAO.findByUserName("likang2");
 //        System.out.println(userEntity.getUrName());
