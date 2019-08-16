@@ -48,4 +48,24 @@
     <select id="findUsersByRlId" parameterType="int" resultMap="UserEntityMap">
         select ur.* from dm_user ur, dm_rl_ur_map mp where mp.mp_rl_id=#{rlId} and mp.mp_ur_id=ur.ur_id
     </select>
+
+    <select id="findByUserNameOrId" parameterType="map" resultMap="UserEntityMap">
+        select * from dm_user where ur_id=#{param2} or ur_user_name=#{param1}
+    </select>
+
+    <select id="findByUserNameOrId2" parameterType="map" resultMap="UserEntityMap">
+        select * from dm_user where ur_id=#{urId} or ur_user_name=#{urUserName}
+    </select>
+
+    <select id="findByUrIds" resultMap="UserEntityMap">
+        <!--list 循环 in （1，2，3，4，5）-->
+        select * from dm_user where ur_id in
+        <foreach collection="list" item="myId" separator="," close=")" open="(">
+            #{myId}
+        </foreach>
+    </select>
+
+    <select id="findByUrIds2" resultMap="UserEntityMap">
+        select * from dm_user where ur_id=#{array} or ur_user_name=#{urUserName}
+    </select>
 </mapper>

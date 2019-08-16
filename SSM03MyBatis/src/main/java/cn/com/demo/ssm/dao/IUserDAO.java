@@ -3,6 +3,7 @@ package cn.com.demo.ssm.dao;
 import cn.com.demo.ssm.entity.UserEntity;
 
 import java.util.List;
+import java.util.Map;
 
 public interface IUserDAO {
     public void save(UserEntity userEntity);
@@ -18,4 +19,12 @@ public interface IUserDAO {
     public List<UserEntity> findAll();
 
     public List<UserEntity> findUsersByRlId(int rlId);
+
+    public List<UserEntity> findByUserNameOrId(String userName, int urId);
+
+    public List<UserEntity> findByUserNameOrId2(Map<String, Object> userNameAndId);
+
+    public List<UserEntity> findByUrIds(List<Integer> ids);
+
+    public List<UserEntity> findByUrIds2(int[] ids);
 }

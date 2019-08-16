@@ -6,8 +6,29 @@ import cn.com.demo.ssm.mybatis.utils.MyBatisUtils;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
+import java.util.Map;
 
 public class UserDAOImpl implements IUserDAO {
+    @Override
+    public List<UserEntity> findByUrIds(List<Integer> ids) {
+        return null;
+    }
+
+    @Override
+    public List<UserEntity> findByUrIds2(int[] ids) {
+        return null;
+    }
+
+    @Override
+    public List<UserEntity> findByUserNameOrId2(Map<String, Object> userNameAndId) {
+        return null;
+    }
+
+    @Override
+    public List<UserEntity> findByUserNameOrId(String userName, int urId) {
+        return null;
+    }
+
     @Override
     public List<UserEntity> findUsersByRlId(int rlId) {
         return null;
