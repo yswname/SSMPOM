@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <!--ur_user_name   urUserName   urUserName-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <!--使用log4j输入日志-->
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
+    <typeAliases>
+        <!--        <typeAlias type="cn.com.demo.ssm.entity.UserEntity" alias="UserEntity"></typeAlias>-->
+        <package name="cn.com.demo.ssm.entity"/>
+    </typeAliases>
+    <!-- default引用environment的id,当前所使用的环境 -->
+    <environments default="default">
+        <!-- 声明可以使用的环境 -->
+        <environment id="default">
+            <!-- 使用原生JDBC事务 -->
+            <transactionManager type="JDBC"></transactionManager>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/snacks_db?characterEncoding=utf8"/>
+                <property name="username" value="root"/>
+                <property name="password" value="123456"/>
+
+                <property name="driver.encoding" value="utf8"/>
+                <property name="driver.characterEncoding" value="utf8"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper class="cn.com.demo.ssm.dao.mybatis.impl.UserDAOMapper"/>
+    </mappers>
+</configuration>

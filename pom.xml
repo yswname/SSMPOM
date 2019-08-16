@@ -13,6 +13,7 @@
         <module>SSM02MyBatis</module>
         <module>SSM03MyBatis</module>
         <module>SSM04MyBatis</module>
+        <module>SSM05MyBatis</module>
     </modules>
 
     <name>SSMPOM</name>

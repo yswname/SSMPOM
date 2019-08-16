@@ -26,8 +26,28 @@
    </insert>
 
     <update id="update" parameterType="UserEntity">
-       update dm_user set ur_name=#{urName},ur_age=#{urAge} where ur_id=#{urId}
-   </update>
+        <!--update dm_user set ur_name=#{urName},ur_age=#{urAge} where ur_id=#{urId}-->
+        update dm_user
+        <!--
+        <trim prefix="set" prefixOverrides=",">
+            <if test="urName != null">
+                ur_name = #{urName} ,
+            </if>
+            <if test="urAge > 0">
+                ur_age = #{urAge}
+            </if>
+        </trim>
+        -->
+        <set>
+            <if test="urName != null">
+                ur_name = #{urName}
+            </if>
+            <if test="urAge > 0">
+                ur_age = #{urAge}
+            </if>
+        </set>
+        where ur_id=#{urId}
+    </update>
 
     <delete id="delete" parameterType="int">
         delete from dm_user where ur_id=#{id}
