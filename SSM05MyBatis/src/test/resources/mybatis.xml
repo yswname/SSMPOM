@@ -32,5 +32,8 @@
     </environments>
     <mappers>
         <mapper class="cn.com.demo.ssm.dao.mybatis.impl.UserDAOMapper"/>
+        <mapper class="cn.com.demo.ssm.dao.mybatis.impl.CardDAOMapper"/>
+        <mapper class="cn.com.demo.ssm.dao.mybatis.impl.OrderDAOMapper"/>
+        <mapper class="cn.com.demo.ssm.dao.mybatis.impl.RoleDAOMapper"/>
     </mappers>
 </configuration>
