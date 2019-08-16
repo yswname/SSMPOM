@@ -57,6 +57,21 @@
         select * from dm_user where ur_id=#{urId} or ur_user_name=#{urUserName}
     </select>
 
+    <select id="findByUserNameOrId3" parameterType="map" resultMap="UserEntityMap">
+        <!--
+         select * from dm_user where ur_id=#{user1.urId} or ur_user_name=#{user2.urUserName}
+         -->
+        select * from dm_user
+        <trim prefix="where" suffixOverrides="or">
+            <if test="user1.urId > 0">
+                ur_id = #{user1.urId} or
+            </if>
+            <if test="user2.urUserName != null">
+                ur_user_name = #{user2.urUserName}
+            </if>
+        </trim>
+    </select>
+
     <select id="findByUrIds" resultMap="UserEntityMap">
         <!--list 循环 in （1，2，3，4，5）-->
         select * from dm_user where ur_id in
@@ -65,7 +80,8 @@
         </foreach>
     </select>
 
-    <select id="findByUrIds2" resultMap="UserEntityMap">
-        select * from dm_user where ur_id=#{array} or ur_user_name=#{urUserName}
+    <select id="findByUrIds2" resultMap="UserEntityMap"><!--不完整-->
+        select * from dm_user
+
     </select>
 </mapper>

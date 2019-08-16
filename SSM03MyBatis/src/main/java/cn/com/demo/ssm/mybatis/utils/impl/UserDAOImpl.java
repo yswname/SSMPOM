@@ -10,6 +10,11 @@ import java.util.Map;
 
 public class UserDAOImpl implements IUserDAO {
     @Override
+    public List<UserEntity> findByUserNameOrId3(Map<String, Object> userNameAndId) {
+        return null;
+    }
+
+    @Override
     public List<UserEntity> findByUrIds(List<Integer> ids) {
         return null;
     }

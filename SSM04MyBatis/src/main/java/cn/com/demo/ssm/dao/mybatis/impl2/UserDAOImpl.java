@@ -11,6 +11,11 @@ public class UserDAOImpl implements IUserDAO {
     private IUserDAO userDAO = MyBatisUtils.getSqlSession().getMapper(IUserDAO.class);
 
     @Override
+    public List<UserEntity> findByUserNameOrId3(Map<String, Object> userNameAndId) {
+        return null;
+    }
+
+    @Override
     public List<UserEntity> findByUrIds(List<Integer> ids) {
         return null;
     }

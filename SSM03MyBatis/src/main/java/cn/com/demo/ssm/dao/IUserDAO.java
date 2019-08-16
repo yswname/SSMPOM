@@ -24,6 +24,8 @@ public interface IUserDAO {
 
     public List<UserEntity> findByUserNameOrId2(Map<String, Object> userNameAndId);
 
+    public List<UserEntity> findByUserNameOrId3(Map<String, Object> userNameAndId);
+
     public List<UserEntity> findByUrIds(List<Integer> ids);
 
     public List<UserEntity> findByUrIds2(int[] ids);
