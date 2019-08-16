@@ -8,6 +8,7 @@ import cn.com.demo.ssm.mybatis.utils.MyBatisUtils;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TestUserDAOMapper {
@@ -16,6 +17,29 @@ public class TestUserDAOMapper {
     @Before
     public void before() {
         this.userDAO = MyBatisUtils.getSqlSession().getMapper(UserDAOMapper.class);
+    }
+
+    @Test
+    public void testFindByUrIds() {
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(3);
+        list.add(4);
+        list.add(10);
+
+
+        List<UserEntity> userList = this.userDAO.findByUrIds(list);
+        for (UserEntity user : userList) {
+            System.out.println(user.getUrName() + "," + user.getUrUserName());
+        }
+    }
+
+    @Test
+    public void testFindUsersByUserNameOrId() {
+        List<UserEntity> userList = this.userDAO.findByUserNameOrId(null, -1);
+        for (UserEntity user : userList) {
+            System.out.println(user.getUrName() + "," + user.getUrUserName());
+        }
     }
 
     @Test

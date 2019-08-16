@@ -3,9 +3,13 @@ package cn.com.demo.ssm.dao.mybatis.impl;
 import cn.com.demo.ssm.dao.IUserDAO;
 import cn.com.demo.ssm.entity.UserEntity;
 import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.jdbc.SQL;
 import org.apache.ibatis.mapping.FetchType;
 
 import java.util.List;
+import java.util.Map;
+
+import static org.apache.ibatis.jdbc.SqlBuilder.BEGIN;
 
 /**
  * 零配置
@@ -50,4 +54,78 @@ public interface UserDAOMapper extends IUserDAO {
     @Override
     @Select("select ur.* from dm_rl_ur_map mp left outer join dm_user ur on mp.mp_ur_id=ur.ur_id where mp.mp_rl_id=#{rlId}")
     List<UserEntity> findUsersByRlId(int rlId);
+
+    @Override
+    @SelectProvider(type = MySQLProvider.class, method = "findByUserNameOrId")
+    List<UserEntity> findByUserNameOrId(String userName, int urId);
+
+    @Override
+    List<UserEntity> findByUserNameOrId2(Map<String, Object> userNameAndId);
+
+    @Override
+    List<UserEntity> findByUserNameOrId3(Map<String, Object> userNameAndId);
+
+    @Override
+    @SelectProvider(type = MySQLProvider.class, method = "findByUrIds")
+    List<UserEntity> findByUrIds(List<Integer> ids);
+
+    @Override
+    List<UserEntity> findByUrIds2(int[] ids);
+
+    public static class MySQLProvider {
+        public String findByUrIds(Map map) {
+            String sql = null;
+            sql = new SQL() {{
+                BEGIN();
+                SELECT("*");
+                FROM("dm_user");
+                List<Integer> ids = (List<Integer>) map.get("list");
+                //WHERE("ur_id in (2,3,4,5)");
+                if (ids != null && ids.size() > 0) {
+                    String condition = "ur_id in (";
+                    for (int id : ids) {
+                        condition += id + ",";
+                    }
+                    condition += ids.get(ids.size() - 1);
+                    condition += ")";
+
+                    WHERE(condition);
+                } else {
+                    WHERE("1<>1");
+                }
+            }}.toString();
+            return sql;
+        }
+
+        public String findByUserNameOrId(String userName, int urId) {
+            String sql = null;
+
+            sql = new SQL() {
+                {
+                    BEGIN();//  清空
+                    SELECT("*");
+                    FROM("dm_user");
+                    if (userName != null || urId > 0) {
+                        //WHERE("ur_user_name=#{param1} or ur_id=#{param2}");
+                        String condition = "";
+                        if (userName != null) {
+                            condition += "ur_user_name=#{param1} ";
+                        }
+                        if (urId > 0) {
+                            condition += " or ur_id=#{param2}";
+                        }
+                        condition = condition.trim();
+                        if (condition.startsWith("or")) {
+                            condition = condition.substring(2);
+                        }
+                        WHERE(condition);
+                    } else {
+                        WHERE("1<>1");
+                    }
+                }
+            }.toString();
+
+            return sql;
+        }
+    }
 }
