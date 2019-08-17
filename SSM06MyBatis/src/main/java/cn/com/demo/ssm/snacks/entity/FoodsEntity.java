@@ -1,14 +1,13 @@
 package cn.com.demo.ssm.snacks.entity;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 public class FoodsEntity implements Serializable {
     private Integer fdId;
 
     private String fdName;
 
-    private BigDecimal fdPrice;
+    private Double fdPrice;
 
     private String fdTaste;
 
@@ -36,11 +35,11 @@ public class FoodsEntity implements Serializable {
         this.fdName = fdName == null ? null : fdName.trim();
     }
 
-    public BigDecimal getFdPrice() {
+    public Double getFdPrice() {
         return fdPrice;
     }
 
-    public void setFdPrice(BigDecimal fdPrice) {
+    public void setFdPrice(Double fdPrice) {
         this.fdPrice = fdPrice;
     }
 

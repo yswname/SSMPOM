@@ -22,7 +22,7 @@
                         userId="${jdbc.user}"
                         password="${jdbc.password}">
         </jdbcConnection>
-        <javaTypeResolver>
+        <javaTypeResolver type="org.mybatis.generator.internal.types.JavaTypeResolverDefaultImpl">
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
         <!--生成Model类存放位置 -->

@@ -1,7 +1,7 @@
 package cn.com.demo.ssm.snacks.entity;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 
 public class ShopCarEntity implements Serializable {
     private Integer shcId;
