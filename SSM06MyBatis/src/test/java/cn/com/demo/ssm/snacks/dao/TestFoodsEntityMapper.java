@@ -16,6 +16,12 @@ public class TestFoodsEntityMapper {
     }
 
     @Test
+    public void testFindFoodSaleCount() {
+        int count = this.foodMapper.findFoodSaleCount(1);
+        System.out.println(count);
+    }
+
+    @Test
     public void testSearchCurrPageFoods() {
         int currPage = 3;
         List<FoodsEntity> foodsList = this.foodMapper.searchCurrPageFoods((currPage - 1) * 3, 3, null);
