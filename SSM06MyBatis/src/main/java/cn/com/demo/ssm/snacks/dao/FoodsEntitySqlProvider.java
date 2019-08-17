@@ -5,6 +5,17 @@ import cn.com.demo.ssm.snacks.entity.FoodsEntity;
 import static org.apache.ibatis.jdbc.SqlBuilder.*;
 
 public class FoodsEntitySqlProvider {
+    public String searchCurrPageFoods(int currPageNo, int number, String keyword) {
+        BEGIN();
+        SELECT("*");
+        FROM("snacks_foods");
+        if (keyword != null && !keyword.equals("")) {
+            WHERE("fd_name like #{param3} or fd_taste like #{param3} or fd_detail like #{param3}");
+        }
+        String sql = "limit #{param1}, #{param2}";
+
+        return SQL() + " " + sql;
+    }
 
     public String insertSelective(FoodsEntity record) {
         BEGIN();
