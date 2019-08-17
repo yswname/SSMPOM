@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.demo.ssm.snacks.xml.dao.OrderEntityMapper" >
+  <resultMap id="BaseResultMap" type="cn.com.demo.ssm.snacks.xml.entity.OrderEntity" >
+    <id column="od_id" property="odId" jdbcType="INTEGER" />
+    <id column="od_code" property="odCode" jdbcType="VARCHAR" />
+    <result column="od_time" property="odTime" jdbcType="TIMESTAMP" />
+    <result column="od_ur_id" property="odUrId" jdbcType="INTEGER" />
+    <result column="od_receiver_name" property="odReceiverName" jdbcType="VARCHAR" />
+    <result column="od_receiver_phone" property="odReceiverPhone" jdbcType="VARCHAR" />
+    <result column="od_receiver_address" property="odReceiverAddress" jdbcType="VARCHAR" />
+    <result column="od_status" property="odStatus" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    od_id, od_code, od_time, od_ur_id, od_receiver_name, od_receiver_phone, od_receiver_address, 
+    od_status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="map" >
+    select 
+    <include refid="Base_Column_List" />
+    from snacks_order
+    where od_id = #{odId,jdbcType=INTEGER}
+      and od_code = #{odCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map" >
+    delete from snacks_order
+    where od_id = #{odId,jdbcType=INTEGER}
+      and od_code = #{odCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.com.demo.ssm.snacks.xml.entity.OrderEntity" >
+    insert into snacks_order (od_id, od_code, od_time, 
+      od_ur_id, od_receiver_name, od_receiver_phone, 
+      od_receiver_address, od_status)
+    values (#{odId,jdbcType=INTEGER}, #{odCode,jdbcType=VARCHAR}, #{odTime,jdbcType=TIMESTAMP}, 
+      #{odUrId,jdbcType=INTEGER}, #{odReceiverName,jdbcType=VARCHAR}, #{odReceiverPhone,jdbcType=VARCHAR}, 
+      #{odReceiverAddress,jdbcType=VARCHAR}, #{odStatus,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.com.demo.ssm.snacks.xml.entity.OrderEntity" >
+    insert into snacks_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="odId != null" >
+        od_id,
+      </if>
+      <if test="odCode != null" >
+        od_code,
+      </if>
+      <if test="odTime != null" >
+        od_time,
+      </if>
+      <if test="odUrId != null" >
+        od_ur_id,
+      </if>
+      <if test="odReceiverName != null" >
+        od_receiver_name,
+      </if>
+      <if test="odReceiverPhone != null" >
+        od_receiver_phone,
+      </if>
+      <if test="odReceiverAddress != null" >
+        od_receiver_address,
+      </if>
+      <if test="odStatus != null" >
+        od_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="odId != null" >
+        #{odId,jdbcType=INTEGER},
+      </if>
+      <if test="odCode != null" >
+        #{odCode,jdbcType=VARCHAR},
+      </if>
+      <if test="odTime != null" >
+        #{odTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="odUrId != null" >
+        #{odUrId,jdbcType=INTEGER},
+      </if>
+      <if test="odReceiverName != null" >
+        #{odReceiverName,jdbcType=VARCHAR},
+      </if>
+      <if test="odReceiverPhone != null" >
+        #{odReceiverPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="odReceiverAddress != null" >
+        #{odReceiverAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="odStatus != null" >
+        #{odStatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.com.demo.ssm.snacks.xml.entity.OrderEntity" >
+    update snacks_order
+    <set >
+      <if test="odTime != null" >
+        od_time = #{odTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="odUrId != null" >
+        od_ur_id = #{odUrId,jdbcType=INTEGER},
+      </if>
+      <if test="odReceiverName != null" >
+        od_receiver_name = #{odReceiverName,jdbcType=VARCHAR},
+      </if>
+      <if test="odReceiverPhone != null" >
+        od_receiver_phone = #{odReceiverPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="odReceiverAddress != null" >
+        od_receiver_address = #{odReceiverAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="odStatus != null" >
+        od_status = #{odStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where od_id = #{odId,jdbcType=INTEGER}
+      and od_code = #{odCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.com.demo.ssm.snacks.xml.entity.OrderEntity" >
+    update snacks_order
+    set od_time = #{odTime,jdbcType=TIMESTAMP},
+      od_ur_id = #{odUrId,jdbcType=INTEGER},
+      od_receiver_name = #{odReceiverName,jdbcType=VARCHAR},
+      od_receiver_phone = #{odReceiverPhone,jdbcType=VARCHAR},
+      od_receiver_address = #{odReceiverAddress,jdbcType=VARCHAR},
+      od_status = #{odStatus,jdbcType=INTEGER}
+    where od_id = #{odId,jdbcType=INTEGER}
+      and od_code = #{odCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

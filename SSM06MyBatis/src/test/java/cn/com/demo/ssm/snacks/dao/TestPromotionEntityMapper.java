@@ -25,9 +25,13 @@ public class TestPromotionEntityMapper {
         }
     }
 
+    @Test
     public void testFindPromotions() {
-        Timestamp begin = new Timestamp(new Date(2019, 7, 3).getTime());
-        Timestamp end = new Timestamp(new Date(2019, 7, 27).getTime());
-
+        Timestamp begin = new Timestamp(new Date(2019 - 1900, 6, 26).getTime());
+        Timestamp end = new Timestamp(new Date(2019 - 1900, 6, 27).getTime());
+        List<PromotionEntity> promList = this.promMapper.findPromotions(1, begin, end);
+        for (PromotionEntity prom : promList) {
+            System.out.println(prom.getPrmName());
+        }
     }
 }

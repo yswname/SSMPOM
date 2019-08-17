@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.demo.ssm.snacks.xml.dao.FoodsEntityMapper">
+    <resultMap id="BaseResultMap" type="cn.com.demo.ssm.snacks.xml.entity.FoodsEntity">
+        <id column="fd_id" property="fdId" jdbcType="INTEGER"/>
+        <result column="fd_name" property="fdName" jdbcType="VARCHAR"/>
+        <result column="fd_price" property="fdPrice" jdbcType="DOUBLE"/>
+        <result column="fd_taste" property="fdTaste" jdbcType="VARCHAR"/>
+        <result column="fd_package" property="fdPackage" jdbcType="VARCHAR"/>
+        <result column="fd_inventory" property="fdInventory" jdbcType="INTEGER"/>
+    </resultMap>
+    <resultMap id="ResultMapWithBLOBs" type="cn.com.demo.ssm.snacks.xml.entity.FoodsEntity" extends="BaseResultMap">
+        <result column="fd_detail" property="fdDetail" jdbcType="LONGVARCHAR"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+    fd_id, fd_name, fd_price, fd_taste, fd_package, fd_inventory
+  </sql>
+    <sql id="Blob_Column_List">
+    fd_detail
+  </sql>
+
+
+    <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from snacks_foods
+        where fd_id = #{fdId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from snacks_foods
+    where fd_id = #{fdId,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="cn.com.demo.ssm.snacks.xml.entity.FoodsEntity">
+    insert into snacks_foods (fd_id, fd_name, fd_price, 
+      fd_taste, fd_package, fd_inventory, 
+      fd_detail)
+    values (#{fdId,jdbcType=INTEGER}, #{fdName,jdbcType=VARCHAR}, #{fdPrice,jdbcType=DOUBLE}, 
+      #{fdTaste,jdbcType=VARCHAR}, #{fdPackage,jdbcType=VARCHAR}, #{fdInventory,jdbcType=INTEGER}, 
+      #{fdDetail,jdbcType=LONGVARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="cn.com.demo.ssm.snacks.xml.entity.FoodsEntity">
+        insert into snacks_foods
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="fdId != null">
+                fd_id,
+            </if>
+            <if test="fdName != null">
+                fd_name,
+            </if>
+            <if test="fdPrice != null">
+                fd_price,
+            </if>
+            <if test="fdTaste != null">
+                fd_taste,
+            </if>
+            <if test="fdPackage != null">
+                fd_package,
+            </if>
+            <if test="fdInventory != null">
+                fd_inventory,
+            </if>
+            <if test="fdDetail != null">
+                fd_detail,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="fdId != null">
+                #{fdId,jdbcType=INTEGER},
+            </if>
+            <if test="fdName != null">
+                #{fdName,jdbcType=VARCHAR},
+            </if>
+            <if test="fdPrice != null">
+                #{fdPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="fdTaste != null">
+                #{fdTaste,jdbcType=VARCHAR},
+            </if>
+            <if test="fdPackage != null">
+                #{fdPackage,jdbcType=VARCHAR},
+            </if>
+            <if test="fdInventory != null">
+                #{fdInventory,jdbcType=INTEGER},
+            </if>
+            <if test="fdDetail != null">
+                #{fdDetail,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="cn.com.demo.ssm.snacks.xml.entity.FoodsEntity">
+        update snacks_foods
+        <set>
+            <if test="fdName != null">
+                fd_name = #{fdName,jdbcType=VARCHAR},
+            </if>
+            <if test="fdPrice != null">
+                fd_price = #{fdPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="fdTaste != null">
+                fd_taste = #{fdTaste,jdbcType=VARCHAR},
+            </if>
+            <if test="fdPackage != null">
+                fd_package = #{fdPackage,jdbcType=VARCHAR},
+            </if>
+            <if test="fdInventory != null">
+                fd_inventory = #{fdInventory,jdbcType=INTEGER},
+            </if>
+            <if test="fdDetail != null">
+                fd_detail = #{fdDetail,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where fd_id = #{fdId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.com.demo.ssm.snacks.xml.entity.FoodsEntity">
+    update snacks_foods
+    set fd_name = #{fdName,jdbcType=VARCHAR},
+      fd_price = #{fdPrice,jdbcType=DOUBLE},
+      fd_taste = #{fdTaste,jdbcType=VARCHAR},
+      fd_package = #{fdPackage,jdbcType=VARCHAR},
+      fd_inventory = #{fdInventory,jdbcType=INTEGER},
+      fd_detail = #{fdDetail,jdbcType=LONGVARCHAR}
+    where fd_id = #{fdId,jdbcType=INTEGER}
+  </update>
+    <update id="updateByPrimaryKey" parameterType="cn.com.demo.ssm.snacks.xml.entity.FoodsEntity">
+    update snacks_foods
+    set fd_name = #{fdName,jdbcType=VARCHAR},
+      fd_price = #{fdPrice,jdbcType=DOUBLE},
+      fd_taste = #{fdTaste,jdbcType=VARCHAR},
+      fd_package = #{fdPackage,jdbcType=VARCHAR},
+      fd_inventory = #{fdInventory,jdbcType=INTEGER}
+    where fd_id = #{fdId,jdbcType=INTEGER}
+  </update>
+</mapper>

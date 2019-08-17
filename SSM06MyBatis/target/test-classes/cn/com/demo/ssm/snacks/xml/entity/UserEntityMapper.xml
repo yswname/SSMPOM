@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.demo.ssm.snacks.xml.dao.UserEntityMapper" >
+  <resultMap id="BaseResultMap" type="cn.com.demo.ssm.snacks.xml.entity.UserEntity" >
+    <id column="ur_id" property="urId" jdbcType="INTEGER" />
+    <result column="ur_user_name" property="urUserName" jdbcType="VARCHAR" />
+    <result column="ur_name" property="urName" jdbcType="VARCHAR" />
+    <result column="ur_password" property="urPassword" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ur_id, ur_user_name, ur_name, ur_password
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from snacks_user
+    where ur_id = #{urId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from snacks_user
+    where ur_id = #{urId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.com.demo.ssm.snacks.xml.entity.UserEntity" >
+    insert into snacks_user (ur_id, ur_user_name, ur_name, 
+      ur_password)
+    values (#{urId,jdbcType=INTEGER}, #{urUserName,jdbcType=VARCHAR}, #{urName,jdbcType=VARCHAR}, 
+      #{urPassword,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.com.demo.ssm.snacks.xml.entity.UserEntity" >
+    insert into snacks_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="urId != null" >
+        ur_id,
+      </if>
+      <if test="urUserName != null" >
+        ur_user_name,
+      </if>
+      <if test="urName != null" >
+        ur_name,
+      </if>
+      <if test="urPassword != null" >
+        ur_password,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="urId != null" >
+        #{urId,jdbcType=INTEGER},
+      </if>
+      <if test="urUserName != null" >
+        #{urUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="urName != null" >
+        #{urName,jdbcType=VARCHAR},
+      </if>
+      <if test="urPassword != null" >
+        #{urPassword,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.com.demo.ssm.snacks.xml.entity.UserEntity" >
+    update snacks_user
+    <set >
+      <if test="urUserName != null" >
+        ur_user_name = #{urUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="urName != null" >
+        ur_name = #{urName,jdbcType=VARCHAR},
+      </if>
+      <if test="urPassword != null" >
+        ur_password = #{urPassword,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ur_id = #{urId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.com.demo.ssm.snacks.xml.entity.UserEntity" >
+    update snacks_user
+    set ur_user_name = #{urUserName,jdbcType=VARCHAR},
+      ur_name = #{urName,jdbcType=VARCHAR},
+      ur_password = #{urPassword,jdbcType=VARCHAR}
+    where ur_id = #{urId,jdbcType=INTEGER}
+  </update>
+</mapper>

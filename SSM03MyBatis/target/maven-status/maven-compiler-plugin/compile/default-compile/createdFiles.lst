@@ -1,0 +1,5 @@
+cn\com\demo\ssm\App.class
+cn\com\demo\ssm\entity\UserEntity.class
+cn\com\demo\ssm\dao\IUserDAO.class
+cn\com\demo\ssm\mybatis\utils\impl\UserDAOImpl.class
+cn\com\demo\ssm\mybatis\utils\MyBatisUtils.class

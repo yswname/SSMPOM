@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.demo.ssm.dao.ICardDAO">
+    <resultMap id="ICardEntityMap" type="ICardEntity">
+        <id column="ic_id" property="icId"/>
+        <result column="ic_code" property="icCode"/>
+        <result column="ic_address" property="icAddress"/>
+
+        <association property="user" javaType="UserEntity" column="ic_id"
+                     select="cn.com.demo.ssm.dao.IUserDAO.findById"></association>
+    </resultMap>
+    <insert id="save" parameterType="ICardEntity">
+        insert into dm_icard (ic_id,ic_code,ic_address) values(#{icId},#{icCode},#{icAddress})
+    </insert>
+    <update id="update" parameterType="ICardEntity">
+        update dm_icard set ic_code=#{icCode},ic_address=#{icAddress} where ic_id=#{icId}
+    </update>
+    <delete id="delete" parameterType="ICardEntity">
+        delete from dm_icard where ic_id=#{icId}
+    </delete>
+    <select id="findById" parameterType="int" resultType="ICardEntity">
+        select * from dm_icard where ic_id=#{id}
+    </select>
+    <select id="findAll" resultType="ICardEntity">
+        select * from dm_icard order by ic_id
+    </select>
+</mapper>

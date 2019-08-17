@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.demo.ssm.snacks.xml.dao.PromotionEntityMapper" >
+  <resultMap id="BaseResultMap" type="cn.com.demo.ssm.snacks.xml.entity.PromotionEntity" >
+    <id column="prm_id" property="prmId" jdbcType="INTEGER" />
+    <result column="prm_name" property="prmName" jdbcType="VARCHAR" />
+    <result column="prm_start_time" property="prmStartTime" jdbcType="TIMESTAMP" />
+    <result column="prm_end_time" property="prmEndTime" jdbcType="TIMESTAMP" />
+    <result column="prm_discount" property="prmDiscount" jdbcType="DOUBLE" />
+    <result column="prm_detail" property="prmDetail" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    prm_id, prm_name, prm_start_time, prm_end_time, prm_discount, prm_detail
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from snacks_promotion
+    where prm_id = #{prmId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from snacks_promotion
+    where prm_id = #{prmId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.com.demo.ssm.snacks.xml.entity.PromotionEntity" >
+    insert into snacks_promotion (prm_id, prm_name, prm_start_time, 
+      prm_end_time, prm_discount, prm_detail
+      )
+    values (#{prmId,jdbcType=INTEGER}, #{prmName,jdbcType=VARCHAR}, #{prmStartTime,jdbcType=TIMESTAMP}, 
+      #{prmEndTime,jdbcType=TIMESTAMP}, #{prmDiscount,jdbcType=DOUBLE}, #{prmDetail,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.com.demo.ssm.snacks.xml.entity.PromotionEntity" >
+    insert into snacks_promotion
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="prmId != null" >
+        prm_id,
+      </if>
+      <if test="prmName != null" >
+        prm_name,
+      </if>
+      <if test="prmStartTime != null" >
+        prm_start_time,
+      </if>
+      <if test="prmEndTime != null" >
+        prm_end_time,
+      </if>
+      <if test="prmDiscount != null" >
+        prm_discount,
+      </if>
+      <if test="prmDetail != null" >
+        prm_detail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="prmId != null" >
+        #{prmId,jdbcType=INTEGER},
+      </if>
+      <if test="prmName != null" >
+        #{prmName,jdbcType=VARCHAR},
+      </if>
+      <if test="prmStartTime != null" >
+        #{prmStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="prmEndTime != null" >
+        #{prmEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="prmDiscount != null" >
+        #{prmDiscount,jdbcType=DOUBLE},
+      </if>
+      <if test="prmDetail != null" >
+        #{prmDetail,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.com.demo.ssm.snacks.xml.entity.PromotionEntity" >
+    update snacks_promotion
+    <set >
+      <if test="prmName != null" >
+        prm_name = #{prmName,jdbcType=VARCHAR},
+      </if>
+      <if test="prmStartTime != null" >
+        prm_start_time = #{prmStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="prmEndTime != null" >
+        prm_end_time = #{prmEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="prmDiscount != null" >
+        prm_discount = #{prmDiscount,jdbcType=DOUBLE},
+      </if>
+      <if test="prmDetail != null" >
+        prm_detail = #{prmDetail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where prm_id = #{prmId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.com.demo.ssm.snacks.xml.entity.PromotionEntity" >
+    update snacks_promotion
+    set prm_name = #{prmName,jdbcType=VARCHAR},
+      prm_start_time = #{prmStartTime,jdbcType=TIMESTAMP},
+      prm_end_time = #{prmEndTime,jdbcType=TIMESTAMP},
+      prm_discount = #{prmDiscount,jdbcType=DOUBLE},
+      prm_detail = #{prmDetail,jdbcType=VARCHAR}
+    where prm_id = #{prmId,jdbcType=INTEGER}
+  </update>
+</mapper>

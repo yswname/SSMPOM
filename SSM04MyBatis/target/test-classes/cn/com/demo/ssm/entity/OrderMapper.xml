@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.demo.ssm.dao.IOrderDAO">
+    <resultMap id="OrderEntityMap" type="OrderEntity">
+        <id column="od_id" property="odId"></id>
+        <result column="od_name" property="odName"></result>
+        <result column="od_ur_id" property="odUrId"></result>
+        <association property="user" javaType="UserEntity">
+            <id property="urId" column="ur_id"></id>
+            <result property="urUserName" column="ur_user_name"></result>
+            <result property="urName" column="ur_name"></result>
+            <result property="urAge" column="ur_age"></result>
+        </association>
+    </resultMap>
+    <resultMap id="OrderEntityNetingMap" type="OrderEntity">
+        <id column="od_id" property="odId"></id>
+        <result column="od_name" property="odName"></result>
+        <result column="od_ur_id" property="odUrId"></result>
+        <association property="user" javaType="UserEntity" column="od_ur_id"
+                     select="cn.com.demo.ssm.dao.IUserDAO.findById"></association>
+    </resultMap>
+    <select id="findById" parameterType="int" resultType="OrderEntity">
+        select * from dm_order where od_id=#{id}
+    </select>
+    <select id="findOrdersByUrId" parameterType="int" resultType="OrderEntity">
+        select * from dm_order where od_ur_id=#{urId}
+    </select>
+    <select id="findAll" resultMap="OrderEntityNetingMap">
+        select od.* from dm_order od  order by od_ur_id
+    </select>
+</mapper>
