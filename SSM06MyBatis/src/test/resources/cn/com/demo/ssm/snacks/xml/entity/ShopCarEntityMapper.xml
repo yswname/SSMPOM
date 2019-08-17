@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.demo.ssm.snacks.xml.dao.ShopCarEntityMapper" >
+  <resultMap id="BaseResultMap" type="cn.com.demo.ssm.snacks.xml.entity.ShopCarEntity" >
+    <id column="shc_id" property="shcId" jdbcType="INTEGER" />
+    <result column="shc_ur_id" property="shcUrId" jdbcType="INTEGER" />
+    <result column="shc_fd_id" property="shcFdId" jdbcType="INTEGER" />
+    <result column="shc_count" property="shcCount" jdbcType="INTEGER" />
+    <result column="shc_add_time" property="shcAddTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    shc_id, shc_ur_id, shc_fd_id, shc_count, shc_add_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from snacks_shop_car
+    where shc_id = #{shcId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from snacks_shop_car
+    where shc_id = #{shcId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.com.demo.ssm.snacks.xml.entity.ShopCarEntity" >
+    insert into snacks_shop_car (shc_id, shc_ur_id, shc_fd_id, 
+      shc_count, shc_add_time)
+    values (#{shcId,jdbcType=INTEGER}, #{shcUrId,jdbcType=INTEGER}, #{shcFdId,jdbcType=INTEGER}, 
+      #{shcCount,jdbcType=INTEGER}, #{shcAddTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.com.demo.ssm.snacks.xml.entity.ShopCarEntity" >
+    insert into snacks_shop_car
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="shcId != null" >
+        shc_id,
+      </if>
+      <if test="shcUrId != null" >
+        shc_ur_id,
+      </if>
+      <if test="shcFdId != null" >
+        shc_fd_id,
+      </if>
+      <if test="shcCount != null" >
+        shc_count,
+      </if>
+      <if test="shcAddTime != null" >
+        shc_add_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="shcId != null" >
+        #{shcId,jdbcType=INTEGER},
+      </if>
+      <if test="shcUrId != null" >
+        #{shcUrId,jdbcType=INTEGER},
+      </if>
+      <if test="shcFdId != null" >
+        #{shcFdId,jdbcType=INTEGER},
+      </if>
+      <if test="shcCount != null" >
+        #{shcCount,jdbcType=INTEGER},
+      </if>
+      <if test="shcAddTime != null" >
+        #{shcAddTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.com.demo.ssm.snacks.xml.entity.ShopCarEntity" >
+    update snacks_shop_car
+    <set >
+      <if test="shcUrId != null" >
+        shc_ur_id = #{shcUrId,jdbcType=INTEGER},
+      </if>
+      <if test="shcFdId != null" >
+        shc_fd_id = #{shcFdId,jdbcType=INTEGER},
+      </if>
+      <if test="shcCount != null" >
+        shc_count = #{shcCount,jdbcType=INTEGER},
+      </if>
+      <if test="shcAddTime != null" >
+        shc_add_time = #{shcAddTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where shc_id = #{shcId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.com.demo.ssm.snacks.xml.entity.ShopCarEntity" >
+    update snacks_shop_car
+    set shc_ur_id = #{shcUrId,jdbcType=INTEGER},
+      shc_fd_id = #{shcFdId,jdbcType=INTEGER},
+      shc_count = #{shcCount,jdbcType=INTEGER},
+      shc_add_time = #{shcAddTime,jdbcType=TIMESTAMP}
+    where shc_id = #{shcId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.demo.ssm.snacks.xml.dao.OrderItemEntityMapper" >
+  <resultMap id="BaseResultMap" type="cn.com.demo.ssm.snacks.xml.entity.OrderItemEntity" >
+    <id column="od_it_id" property="odItId" jdbcType="INTEGER" />
+    <result column="od_it_fd_id" property="odItFdId" jdbcType="INTEGER" />
+    <result column="od_it_count" property="odItCount" jdbcType="INTEGER" />
+    <result column="od_it_price" property="odItPrice" jdbcType="DOUBLE" />
+    <result column="od_id" property="odId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    od_it_id, od_it_fd_id, od_it_count, od_it_price, od_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from snacks_order_item
+    where od_it_id = #{odItId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from snacks_order_item
+    where od_it_id = #{odItId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.com.demo.ssm.snacks.xml.entity.OrderItemEntity" >
+    insert into snacks_order_item (od_it_id, od_it_fd_id, od_it_count, 
+      od_it_price, od_id)
+    values (#{odItId,jdbcType=INTEGER}, #{odItFdId,jdbcType=INTEGER}, #{odItCount,jdbcType=INTEGER}, 
+      #{odItPrice,jdbcType=DOUBLE}, #{odId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.com.demo.ssm.snacks.xml.entity.OrderItemEntity" >
+    insert into snacks_order_item
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="odItId != null" >
+        od_it_id,
+      </if>
+      <if test="odItFdId != null" >
+        od_it_fd_id,
+      </if>
+      <if test="odItCount != null" >
+        od_it_count,
+      </if>
+      <if test="odItPrice != null" >
+        od_it_price,
+      </if>
+      <if test="odId != null" >
+        od_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="odItId != null" >
+        #{odItId,jdbcType=INTEGER},
+      </if>
+      <if test="odItFdId != null" >
+        #{odItFdId,jdbcType=INTEGER},
+      </if>
+      <if test="odItCount != null" >
+        #{odItCount,jdbcType=INTEGER},
+      </if>
+      <if test="odItPrice != null" >
+        #{odItPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="odId != null" >
+        #{odId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.com.demo.ssm.snacks.xml.entity.OrderItemEntity" >
+    update snacks_order_item
+    <set >
+      <if test="odItFdId != null" >
+        od_it_fd_id = #{odItFdId,jdbcType=INTEGER},
+      </if>
+      <if test="odItCount != null" >
+        od_it_count = #{odItCount,jdbcType=INTEGER},
+      </if>
+      <if test="odItPrice != null" >
+        od_it_price = #{odItPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="odId != null" >
+        od_id = #{odId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where od_it_id = #{odItId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.com.demo.ssm.snacks.xml.entity.OrderItemEntity" >
+    update snacks_order_item
+    set od_it_fd_id = #{odItFdId,jdbcType=INTEGER},
+      od_it_count = #{odItCount,jdbcType=INTEGER},
+      od_it_price = #{odItPrice,jdbcType=DOUBLE},
+      od_id = #{odId,jdbcType=INTEGER}
+    where od_it_id = #{odItId,jdbcType=INTEGER}
+  </update>
+</mapper>
