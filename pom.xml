@@ -30,7 +30,7 @@
         <servlet.version>3.0.1</servlet.version>
         <jstl.version>1.2</jstl.version>
         <jsp.version>2.2</jsp.version>
-        <mybatis.version>3.4.4</mybatis.version>
+        <mybatis.version>3.5.6</mybatis.version>
         <mysql.driver.version>5.1.21</mysql.driver.version>
         <log4j.version>1.2.17</log4j.version>
     </properties>
